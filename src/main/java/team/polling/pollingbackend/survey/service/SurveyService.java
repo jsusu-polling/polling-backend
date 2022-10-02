@@ -48,23 +48,32 @@ public class SurveyService {
     }
 
     @Transactional
-    public void updateSurveyTitle(Long id, String title) {
-        Survey survey = surveyRepository.findById(id).orElse(null);
+    public void updateSurveyTitle(Long surveyId, String title) {
+        Survey survey = surveyRepository.findById(surveyId).orElse(null);
         survey.setTitle(title);
         surveyRepository.save(survey);
     }
 
     @Transactional
-    public void updateSurveyCategory(Long id, String category){
-        Survey survey = surveyRepository.findById(id).orElse(null);
+    public void updateSurveyCategory(Long surveyId, String category){
+        Survey survey = surveyRepository.findById(surveyId).orElse(null);
         survey.setCategory(Category.valueOf(category).toString());
         surveyRepository.save(survey);
     }
 
     @Transactional
-    public void updateSurveyExplanation(Long id, String explanation){
-        Survey survey = surveyRepository.findById(id).orElse(null);
+    public void updateSurveyExplanation(Long surveyId, String explanation){
+        Survey survey = surveyRepository.findById(surveyId).orElse(null);
         survey.setExplanation(explanation);
+        surveyRepository.save(survey);
+    }
+
+    @Transactional
+    public void setSurveyReward(Long surveyId, Integer basicReward, Integer randomReward, Integer randomPeople) {
+        Survey survey = surveyRepository.findById(surveyId).orElse(null);
+        survey.setBasicReward(basicReward);
+        survey.setRandomReward(randomReward);
+        survey.setRandomPeople(randomPeople);
         surveyRepository.save(survey);
     }
 
@@ -77,9 +86,11 @@ public class SurveyService {
 
         List<Integer> endDates = Arrays.stream(endDate.split("-")).map(Integer::parseInt).toList();
         LocalDate end = LocalDate.of(endDates.get(0), endDates.get(1), endDates.get(2));
-        
+
         survey.setStartDate(start);
         survey.setEndDate(end);
+        survey.setStatus(Status.READY);
+        surveyRepository.save(survey);
     }
 
 

@@ -26,6 +26,11 @@ public class Survey extends BaseTime {
     private String title;
     private String category;
     private String explanation;
+
+    private Integer basicReward;
+    private Integer randomReward;
+    private Integer randomPeople;
+
     private LocalDate startDate;
     private LocalDate endDate;
 
