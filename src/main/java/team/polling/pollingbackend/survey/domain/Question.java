@@ -2,7 +2,7 @@ package team.polling.pollingbackend.survey.domain;
 
 import lombok.*;
 import team.polling.pollingbackend.common.domain.BaseTime;
-import team.polling.pollingbackend.survey.domain.constants.Category;
+import team.polling.pollingbackend.common.constants.Category;
 import team.polling.pollingbackend.survey.domain.constants.Condition;
 
 import javax.persistence.*;

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import team.polling.pollingbackend.participation.domain.Participation;
 import team.polling.pollingbackend.participation.repository.ParticipationRepository;
 import team.polling.pollingbackend.survey.domain.Survey;
-import team.polling.pollingbackend.survey.domain.constants.Category;
+import team.polling.pollingbackend.common.constants.Category;
 import team.polling.pollingbackend.survey.domain.constants.Status;
 import team.polling.pollingbackend.survey.repository.SurveyRepository;
 import team.polling.pollingbackend.user.domain.User;
