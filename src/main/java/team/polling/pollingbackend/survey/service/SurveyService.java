@@ -24,17 +24,19 @@ public class SurveyService {
     private final UserRepository userRepository;
     private final ParticipationRepository participationRepository;
 
-    public List<Survey> getAllSurveyListByUser(String email) {
+    public List<Survey> getAllSurveyHistoryByUser(String email) {
         User user = userRepository.findUserByEmail(email).orElse(null);
         List<Survey> surveys = surveyRepository.findAllByUser(user);
         return surveys;
     }
 
-    public List<Survey> getAllParticipationSurveyByUser(String email) {
+    public List<Survey> getAllParticipationSurveyHistoryByUser(String email) {
         User user = userRepository.findUserByEmail(email).orElse(null);
         List<Participation> participations = participationRepository.findAllByUserOrderByCreatedDateDesc(user);
         return participations.stream().map(Participation::getSurvey).collect(Collectors.toList());
     }
+
+    public void getSurvey() {}
 
     @Transactional
     public Long createSurvey(String email) {
