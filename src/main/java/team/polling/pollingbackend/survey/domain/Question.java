@@ -18,6 +18,7 @@ public class Question extends BaseTime {
     @Id @Column(name = "question_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private Survey survey;
 

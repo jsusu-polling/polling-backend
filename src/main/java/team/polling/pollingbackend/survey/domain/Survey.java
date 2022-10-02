@@ -22,6 +22,10 @@ public class Survey extends BaseTime {
     @ManyToOne
     private User user;
 
+    private String title;
+    private String category;
+    private String explanation;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 

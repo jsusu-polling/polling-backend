@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import team.polling.pollingbackend.participation.domain.Participation;
 import team.polling.pollingbackend.participation.repository.ParticipationRepository;
 import team.polling.pollingbackend.survey.domain.Survey;
+import team.polling.pollingbackend.survey.domain.constants.Category;
+import team.polling.pollingbackend.survey.domain.constants.Status;
 import team.polling.pollingbackend.survey.repository.SurveyRepository;
 import team.polling.pollingbackend.user.domain.User;
 import team.polling.pollingbackend.user.repository.UserRepository;
@@ -33,5 +35,28 @@ public class SurveyService {
         List<Participation> participations = participationRepository.findAllByUserOrderByCreatedDateDesc(user);
         return participations.stream().map(Participation::getSurvey).collect(Collectors.toList());
     }
+
+    @Transactional
+    public Long createSurvey(String email) {
+        User user = userRepository.findUserByEmail(email).orElse(null);
+        Survey survey = Survey.builder().user(user).status(Status.PENDING).build();
+        return surveyRepository.save(survey).getId();
+    }
+
+    @Transactional
+    public void updateSurveyTitle(Long id, String title) {
+        Survey survey = surveyRepository.findById(id).orElse(null);
+        survey.setTitle(title);
+        surveyRepository.save(survey);
+    }
+
+    @Transactional
+    public void updateSurveyCategory(Long id, String category){
+        Survey survey = surveyRepository.findById(id).orElse(null);
+        survey.setCategory(Category.valueOf(category).toString());
+        surveyRepository.save(survey);
+    }
+
+
 
 }
