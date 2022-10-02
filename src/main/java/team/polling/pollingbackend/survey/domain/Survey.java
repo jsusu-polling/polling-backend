@@ -19,7 +19,7 @@ public class Survey extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne @Column(name = "user_id")
     private User user;
 
     private String title;

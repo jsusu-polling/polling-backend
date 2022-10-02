@@ -2,8 +2,7 @@ package team.polling.pollingbackend.survey.domain;
 
 import lombok.*;
 import team.polling.pollingbackend.common.domain.BaseTime;
-import team.polling.pollingbackend.common.constants.Category;
-import team.polling.pollingbackend.survey.domain.constants.Condition;
+import team.polling.pollingbackend.survey.domain.constants.Template;
 
 import javax.persistence.*;
 
@@ -19,15 +18,10 @@ public class Question extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne @Column(name = "survey_id")
     private Survey survey;
-
     private String question;
-    private String answer;
 
     @Enumerated(EnumType.STRING)
-    private Category category;
-    
-    @Enumerated(EnumType.STRING)
-    private Condition condition;
+    private Template template;
 }

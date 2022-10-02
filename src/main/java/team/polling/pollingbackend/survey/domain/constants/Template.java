@@ -1,5 +1,5 @@
 package team.polling.pollingbackend.survey.domain.constants;
 
-public enum Condition {
-    SHORT, LONG
+public enum Template {
+    SHORT, LONG, MONOSELECT, MULTISELECT
 }
