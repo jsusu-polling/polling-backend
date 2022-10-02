@@ -6,6 +6,7 @@ import team.polling.pollingbackend.survey.domain.constants.Status;
 import team.polling.pollingbackend.user.domain.User;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity(name = "survey")
 @Data
@@ -25,6 +26,8 @@ public class Survey extends BaseTime {
     private String title;
     private String category;
     private String explanation;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
     private Status status;

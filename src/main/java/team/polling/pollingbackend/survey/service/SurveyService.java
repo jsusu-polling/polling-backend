@@ -12,6 +12,8 @@ import team.polling.pollingbackend.survey.repository.SurveyRepository;
 import team.polling.pollingbackend.user.domain.User;
 import team.polling.pollingbackend.user.repository.UserRepository;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +66,20 @@ public class SurveyService {
         Survey survey = surveyRepository.findById(id).orElse(null);
         survey.setExplanation(explanation);
         surveyRepository.save(survey);
+    }
+
+    @Transactional
+    public void setSurveyDate(Long surveyId, String startDate, String endDate) {
+        Survey survey = surveyRepository.findById(surveyId).orElse(null);
+
+        List<Integer> startDates = Arrays.stream(startDate.split("-")).map(Integer::parseInt).toList();
+        LocalDate start = LocalDate.of(startDates.get(0), startDates.get(1), startDates.get(2));
+
+        List<Integer> endDates = Arrays.stream(endDate.split("-")).map(Integer::parseInt).toList();
+        LocalDate end = LocalDate.of(endDates.get(0), endDates.get(1), endDates.get(2));
+        
+        survey.setStartDate(start);
+        survey.setEndDate(end);
     }
 
 
