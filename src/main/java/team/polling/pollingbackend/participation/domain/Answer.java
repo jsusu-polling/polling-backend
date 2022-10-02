@@ -19,9 +19,10 @@ public class Answer {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private Participation participation;
 
     @ManyToOne
     private Question question;
+    private String result;
 
 }
