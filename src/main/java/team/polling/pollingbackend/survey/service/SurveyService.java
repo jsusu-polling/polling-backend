@@ -57,6 +57,13 @@ public class SurveyService {
         surveyRepository.save(survey);
     }
 
+    @Transactional
+    public void updateSurveyExplanation(Long id, String explanation){
+        Survey survey = surveyRepository.findById(id).orElse(null);
+        survey.setExplanation(explanation);
+        surveyRepository.save(survey);
+    }
+
 
 
 }
