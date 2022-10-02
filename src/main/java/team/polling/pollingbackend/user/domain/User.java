@@ -1,6 +1,7 @@
 package team.polling.pollingbackend.user.domain;
 
 import lombok.*;
+import team.polling.pollingbackend.common.domain.BaseTime;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User extends BaseTime {
 
     @Id @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

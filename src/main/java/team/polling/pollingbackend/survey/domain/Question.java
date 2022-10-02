@@ -1,14 +1,26 @@
 package team.polling.pollingbackend.survey.domain;
 
+import lombok.*;
+import team.polling.pollingbackend.common.domain.BaseTime;
 import team.polling.pollingbackend.survey.domain.constants.Category;
 import team.polling.pollingbackend.survey.domain.constants.Condition;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
-public class Question {
+@Entity(name = "question")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Question extends BaseTime {
 
+    @Id @Column(name = "question_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private Survey survey;
+
     private String question;
     private String answer;
 
